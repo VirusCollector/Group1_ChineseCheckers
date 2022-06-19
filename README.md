@@ -7,5 +7,5 @@
 Created by Group1
 
 ## 代码框架图
-![avatar](D:/Group1_ChineseCheckers/1.png)
-![avatar](D:/Group1_ChineseCheckers/2.png)
+![avatar](https://github.com/VirusCollector/Group1_ChineseCheckers/blob/main/1.png)
+![avatar](https://github.com/VirusCollector/Group1_ChineseCheckers/blob/main/2.png)

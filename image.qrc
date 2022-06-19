@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pictures/board.jpg</file>
+        <file>pictures/blue.png</file>
+        <file>pictures/green.png</file>
+        <file>pictures/orange.png</file>
+        <file>pictures/purple.png</file>
+        <file>pictures/red.png</file>
+        <file>pictures/yellow.png</file>
+        <file>pictures/Start1.png</file>
+        <file>pictures/music1.png</file>
+        <file>pictures/setting.jpeg</file>
+        <file>pictures/1107.png</file>
+        <file>pictures/Startpage.jpg</file>
+        <file>pictures/sp1.jpg</file>
+        <file>pictures/landscape-ge31a3ab68_640.jpg</file>
+    </qresource>
+</RCC>

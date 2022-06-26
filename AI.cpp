@@ -9,7 +9,7 @@
 #include <algorithm>
 #include<board.h>
 #include<widget.h>
-int _n = 12;//在这里修改托管的搜索深度（取值范围：0 <= n <= 14 && n==Z+ && n % the number of players == 0!)
+int _n = 4;//在这里修改托管的搜索深度（取值范围：0 <= n <= 14 && n==Z+ && n % the number of players == 0!)
 
 
 using std::vector;
@@ -220,7 +220,7 @@ double AI::get_value2(std::vector<Player*> player)//2-players' value function.
         {
             ad_score-=(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y())*1.1;//also use the point to give value.
             if(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()>4)//if the chess still not leave, give it a punishment.
-                ad_score-=4*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()-4);
+                ad_score-=0.4*pow((player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()-4),2)+0.7*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y());
         }
     }
 

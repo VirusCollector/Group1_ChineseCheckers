@@ -29,7 +29,6 @@ double max(double a,double b)
     if(a>=b) return a;
     return b;
 }
-
 void search_hint_point(vector<Player*> players,int who, int num)//overload the search_place function in AI;
 {
     int flag = 0;
@@ -52,7 +51,7 @@ void search_hint_point(vector<Player*> players,int who, int num)//overload the s
     }
 
     memset(_board,0,sizeof(_board));
-    if(who == 0 && (will_win == true || last_marble == num))//if the chess has moved last time, it's no use to walk backward.
+    if(who == 0 &&  last_marble == num)//if the chess has moved last time, it's no use to walk backward.
     {
         _board[last_step.x()+8][last_step.y()+8] = 2;
     }
@@ -128,7 +127,7 @@ void search_hint_point(vector<Player*> players,int who, int num)//overload the s
             if(isinboard(hintpoint+nextr[i])&&_board[hintpoint.x()+nextr[i].x()+8][hintpoint.y()+nextr[i].y()+8]==0)
             {
                 players[who]->marbles[num]->hint_points.push_back(hintpoint+nextr[i]);
-                _board[hintpoint.x()+nextr[i].x()+8][hintpoint.y()+nextl[i].y()+8] = 1;
+                _board[hintpoint.x()+nextr[i].x()+8][hintpoint.y()+nextr[i].y()+8] = 1;
                 players[who]->marbles[num]->fromidxes.push_back(0);
             }
         }
@@ -251,10 +250,10 @@ double AI::get_value3(std::vector<Player*> player)//3-players' value function.
     {
         for(int i=0;i<10;i++)
         {
-            my_score-=(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y())*1.2;//放大差异
+            my_score-=(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y())*1.05;//放大差异
             if(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()>0)//未到达对岸的给予惩罚
             {
-                my_score-=3+1.5*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y());
+                my_score-=2+2*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y());
             }
             if(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()<-4)//if the marble has arrive, give it other reward.
             {
@@ -269,7 +268,7 @@ double AI::get_value3(std::vector<Player*> player)//3-players' value function.
         {
             my_score-=(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y())*1.05;//also use the point to give value.
             if(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()>4)//if the chess still not leave, give it a punishment.
-                my_score-=1+0.8*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y());
+                my_score-=0.4*pow((player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y()-4),2)+1.1*(player[0]->marbles[i]->playerposition.x()+player[0]->marbles[i]->playerposition.y());;
         }
     }
 
@@ -478,9 +477,9 @@ std::vector<QPoint> AI::use()//每次用吐一步，需要多次调用。
             }
         }
     }
-
-    last_marble = number;//save the message of last step for pruning.
     last_step = players[0]->marbles[number]->boardposition;
+    last_marble = number;//save the message of last step for pruning.
+
 
     //get the path of the marble move instead of the point for animation.
     int iter;

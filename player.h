@@ -29,6 +29,7 @@ public:
     std::vector<QPoint> LatestPath;//最后一步移动的路径，格式和path相同,第一轮为空，可用LatestPath->empty()来判断
     QPushButton* temp[100];//显示上一步
     QTimer last_time;
+    bool loser_state = false;
     bool isstuck();//是否困毙 注:函数内会调用所有棋子的get_hint_points,
     void searchHintPoints();
     void show_hint_btn(Marble*m);//TODO:显示hint_btn(可以换个图之类的完善一下)

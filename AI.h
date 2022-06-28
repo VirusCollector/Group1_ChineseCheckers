@@ -18,7 +18,7 @@ class AI:public QObject
     Q_OBJECT;
 public:
     std::vector<Player*> players;
-    int num_of_players;
+    int num_of_players = 0;
     AI(std::vector<Player*> player):players(player)
     {
         num_of_players = player.size();

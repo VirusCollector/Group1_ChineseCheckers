@@ -96,6 +96,7 @@ void Player::set_loserstate()
     if(hint_btns.size())
         clear_hint_btn();
     parentBoard->loserlist.push_back(this);
+    loser_state = true;
     for(Marble* marble0:marbles)
     {
         setstate(parentBoard->grid,marble0->boardposition,0);

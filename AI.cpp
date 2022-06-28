@@ -457,11 +457,18 @@ std::vector<QPoint> AI::use()//每次用吐一步，需要多次调用。
         {
 
             std::vector<Player*> now;
+            int flag_1 = 0;
             if(num_of_players != 2){_n = 0;}
             for(int k = 0 ;k < num_of_players;k++)//save the board of this time in this place;
             {
+                if(players[k]->loser_state == true)
+                {
+                    flag_1++;
+                    continue;
+                }
                 now.push_back(new Player(players[k],i,players[0]->marbles[i]->hint_points[j],!k));
             }
+            num_of_players-=flag_1;
 
             temp = alpha_beta(now,20000,-20000,_n,num_of_players);//use alpha_beta function to get the score of this step;
 
